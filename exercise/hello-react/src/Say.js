@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const Say = () => {
     const [message, setMessage] = useState('기본 이름');
     const onClickEnter = () => setMessage('안녕하세요!');
-    const onClickLeave = () => setMessage('안녕히 가세요!');
+    const onClickLeave = () => setMessage('안녕히가세요!');
     const [color, setColor] = useState('black');
 
     return (
