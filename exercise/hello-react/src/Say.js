@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import MyComponent from './MyComponent';
 
 const Say = () => {
     const [message, setMessage] = useState('기본 이름');
