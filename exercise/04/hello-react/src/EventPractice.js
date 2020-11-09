@@ -1,44 +1,48 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class EventPractice extends Component {
-  state = {
-    message: ''
-  }
+const EventPractice = () => {
+  const [username, setUsername] = useState('');
+  const [message, setMessage] = useState('');
+  const onChangeUsername = e => setUsername(e.target.value);
+  const onChangeMessage = e => setMessage(e.target.value);
 
-  constructor(props){
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChange = this.handleClick.bind(this);
-  }
+  const onClick = () => {
+    console.log(username + ':' + message);
+    setUsername('');
+    setMessage('');
+  };
 
-  handleChange = (e) => {
-    this.setState({
-      message: e.target.value
-    });
-  }
+  const onKeyPress = e => {
+    if(e.key === 'Enter') {
+      onClick();
+    }
+  };
 
-  handleClick = (e) => {
-    this.setState({
-      message: ''
-    });
-  }
+  return (
+    <>
+      <h1>이벤트 연습</h1>
 
-  render() {
-    return (
-      <>
-        <h1>이벤트 연습</h1>
-        <h2>깃 머지 연습</h2>
-        <input 
-          type="text"
-          name="message"
-          placeholder="아무거나 입력해 보세요"
-          value={this.state.message}
-          onChange={this.handleChange}
-          />
-          <button onClick={this.handleClick}>확인</button>
-      </>
-    );
-  }
-}
+      <input 
+        type='text'
+        name='username'
+        placeholder='사용자명'
+        value={username}
+        onChange={onChangeUsername}
+      />
+
+      <input 
+        type='text'
+        name='message'
+        placeholder='아무거나 입력해보세요'
+        value={message}
+        onChange={onChangeMessage}
+        onKeyPress={onKeyPress}
+      />
+      <button onClick={onClick}>확인</button>
+
+    </>
+  );
+
+};
 
 export default EventPractice;
