@@ -27,6 +27,7 @@ class EventPractice extends Component {
     return (
       <>
         <h1>이벤트 연습</h1>
+        <h2>깃 머지 연습</h2>
         <input 
           type="text"
           name="message"
