@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
 
 const EventPractice = () => {
-  const [username, setUsername] = useState('');
-  const [message, setMessage] = useState('');
-  const onChangeUsername = e => setUsername(e.target.value);
-  const onChangeMessage = e => setMessage(e.target.value);
+  const [form, setForm] = useState({
+    username: '',
+    message: ''
+  });
+  
+  const { username, message } = form;
+  
+  const onChange = e => {
+      const nextForm = {
+        ...form,
+        [e.target.name]: e.target.value
+      };
+      setForm(nextForm);
+  }
 
   const onClick = () => {
-    console.log(username + ':' + message);
-    setUsername('');
-    setMessage('');
+    console.log(username + ': ' + message);
+    setForm({
+      username: '',
+      message: ''
+    });
   };
-
   const onKeyPress = e => {
     if(e.key === 'Enter') {
       onClick();
@@ -21,25 +32,22 @@ const EventPractice = () => {
   return (
     <>
       <h1>이벤트 연습</h1>
-
-      <input 
+      <input
         type='text'
         name='username'
         placeholder='사용자명'
         value={username}
-        onChange={onChangeUsername}
+        onChange={onChange}
       />
-
-      <input 
+      <input
         type='text'
         name='message'
-        placeholder='아무거나 입력해보세요'
+        placeholder='아무거나 입력해 보세요'
         value={message}
-        onChange={onChangeMessage}
+        onChange={onChange}
         onKeyPress={onKeyPress}
       />
       <button onClick={onClick}>확인</button>
-
     </>
   );
 
